@@ -5,12 +5,12 @@ namespace SeleniumVZhTestProject_1
     public class HomePage : BasePage
     {
         private const int WAIT_TIME_10 = 10;
-        private const string LOGIN_BUTTON = "resplash-btn_primary";
+        private By LOGIN_BUTTON = By.ClassName ("resplash-btn_primary");
         IWebElement _loginButton;
         public HomePage(IWebDriver driver) : base(driver)
         {
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(WAIT_TIME_10);
-            _loginButton = FindElementByClassName(LOGIN_BUTTON);
+            _loginButton = FindElementBy(LOGIN_BUTTON);
         }
 
         public void GoToLoginWindow()
@@ -22,7 +22,7 @@ namespace SeleniumVZhTestProject_1
         {
             try
             {
-                var loginButton = FindElementByClassName(LOGIN_BUTTON);
+                var loginButton = FindElementBy(LOGIN_BUTTON);
                 return true;
             }
             catch (NoSuchElementException)

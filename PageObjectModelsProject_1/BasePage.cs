@@ -15,40 +15,25 @@ namespace SeleniumVZhTestProject_1
         public IWebElement FindElementByClassName(string className)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(20));
-            try
-            {
-                return wait.Until(driver => driver.FindElement(By.ClassName(className)));
-            }
-            catch (NoSuchElementException ex)
-            {
-                throw;
-            }
+            return wait.Until(driver => driver.FindElement(By.ClassName(className)));     
         }
 
         public IWebElement FindElementByXPath(string xPath)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(20));
-            try
-            {
-                return wait.Until(driver => driver.FindElement(By.XPath(xPath)));
-            }
-            catch (NoSuchElementException ex)
-            {
-                throw;
-            }
+            return wait.Until(driver => driver.FindElement(By.XPath(xPath)));
         }
 
         public IWebElement FindElementByCSS(string cssSelector)
         {
             WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(20));
-            try
-            {
-                return wait.Until(driver => driver.FindElement(By.CssSelector(cssSelector)));
-            }
-            catch (NoSuchElementException ex)
-            {
-                throw;
-            }
+            return wait.Until(driver => driver.FindElement(By.CssSelector(cssSelector)));
+        }
+
+        public IWebElement FindElementBy(By Selector)
+        {
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(20));
+            return wait.Until(driver => driver.FindElement(Selector));
         }
     }
 }
