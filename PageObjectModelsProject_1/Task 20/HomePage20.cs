@@ -2,12 +2,12 @@
 
 namespace SeleniumVZhTestProject_1
 {
-    public class HomePage : BasePage
+    public class HomePage20 : BasePage
     {
         private const int WAIT_TIME_10 = 10;
         private By LOGIN_BUTTON = By.ClassName ("resplash-btn_primary");
         IWebElement _loginButton;
-        public HomePage(IWebDriver driver) : base(driver)
+        public HomePage20(IWebDriver driver) : base(driver)
         {
             _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(WAIT_TIME_10);
             _loginButton = FindElementBy(LOGIN_BUTTON);

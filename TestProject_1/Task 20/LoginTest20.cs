@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace SeleniumVZhTestProject_1
 {
-    public class LoginTest
+    public class LoginTest20
     {
         private WebDriver driver;
         private const string NAME = "v_z_2025";
@@ -21,10 +21,10 @@ namespace SeleniumVZhTestProject_1
         [Test]
         public void TestLogin()
         {
-        HomePage homePage = new HomePage(driver);
+        HomePage20 homePage = new HomePage20(driver);
         homePage.GoToLoginWindow();
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage20 loginPage = new LoginPage20(driver);
         loginPage.EnterCreds(NAME, PASSWORD);
         Assert.IsTrue(loginPage.LogInSuccess());
         }

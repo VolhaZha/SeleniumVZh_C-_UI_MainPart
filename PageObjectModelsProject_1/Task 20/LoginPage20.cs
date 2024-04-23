@@ -2,7 +2,7 @@
 
 namespace SeleniumVZhTestProject_1
 {
-    public class LoginPage : BasePage
+    public class LoginPage20 : BasePage
     {
         private const int WAIT_TIME_10 = 10;
         private By IFRAME = By.XPath("//iframe[contains(@class, 'ag-popup__frame__layout__iframe')]");
@@ -18,7 +18,7 @@ namespace SeleniumVZhTestProject_1
         IWebElement _passField;
         IWebElement _enterSignInButton;
 
-        public LoginPage(IWebDriver driver) : base(driver)
+        public LoginPage20(IWebDriver driver) : base(driver)
         {
             _iframeElement = FindElementBy(IFRAME);
             _driver.SwitchTo().Frame(_iframeElement);
