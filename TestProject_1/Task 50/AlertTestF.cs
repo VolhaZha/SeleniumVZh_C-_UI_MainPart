@@ -6,7 +6,7 @@ namespace TestProject_1.Task_50
 {
     public class AlertTestF
     {
-        public WebDriver driver;
+        private WebDriver driver;
 
         [SetUp]
         public void Setup()
@@ -15,76 +15,61 @@ namespace TestProject_1.Task_50
             driver.Url = AlertParams.URL;
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(AlertParams.WAIT_TIME_1);
-
         }
 
         [Test, Order(1)]
         public void TestConfirmOk()
         {
-            driver.Navigate().GoToUrl(AlertParams.URL);
-
-            IWebElement clickMeAlert = driver.FindElement(AlertParams.BUTTON_CLICK_ME_CONFIRM);
-            clickMeAlert.Click();
-
+            AlertPage alertPage = new AlertPage(driver);
+            alertPage.ConfirmOk();
+          
             string expectedAlertText = "Press a button!";
             string actualAlertText = driver.SwitchTo().Alert().Text;
             Assert.AreEqual(expectedAlertText, actualAlertText);
 
-            Thread.Sleep(5000);
-
-            driver.SwitchTo().Alert().Accept();
+            alertPage.AlertAccept();
         }
 
         [Test, Order(2)]
         public void TestConfirmCancel()
         {
-            driver.Navigate().GoToUrl(AlertParams.URL);
+            AlertPage alertPage = new AlertPage(driver);
 
-            IWebElement clickMeAlert = driver.FindElement(AlertParams.BUTTON_CLICK_ME_CONFIRM);
-            clickMeAlert.Click();
+            alertPage.ConfirmCancel();
 
             string expectedAlertText = "Press a button!";
             string actualAlertText = driver.SwitchTo().Alert().Text;
             Assert.AreEqual(expectedAlertText, actualAlertText);
 
-            Thread.Sleep(5000);
-
-            driver.SwitchTo().Alert().Dismiss();
+            alertPage.AlertDismiss();
         }
 
         [Test, Order(4)]
         public void TestPrompt()
         {
-            driver.Navigate().GoToUrl(AlertParams.URL);
+            AlertPage alertPage = new AlertPage(driver);
 
-            IWebElement clickForPromptAlert = driver.FindElement(AlertParams.BUTTON_CLICK_FOR_PROMPT);
-            clickForPromptAlert.Click();
+            alertPage.Prompt();
 
             string expectedAlertText = "Please enter your name";
             string actualAlertText = driver.SwitchTo().Alert().Text;
             Assert.AreEqual(expectedAlertText, actualAlertText);
 
-            Thread.Sleep(5000);
-
-            driver.SwitchTo().Alert().SendKeys("OZ");
-            driver.SwitchTo().Alert().Accept();
+            alertPage.AlertSendKeys();
         }
 
         [Test, Order(3)]
         public void TestAlert()
         {
-            driver.Navigate().GoToUrl(AlertParams.URL);
+            AlertPage alertPage = new AlertPage(driver);
 
-            IWebElement clickMeAlert = driver.FindElement(AlertParams.BUTTON_CLICK_ME_ALERT);
-            clickMeAlert.Click();
+            alertPage.Alert();
 
             string expectedAlertText = "I am an alert box!";
             string actualAlertText = driver.SwitchTo().Alert().Text;
             Assert.AreEqual(expectedAlertText, actualAlertText);
 
-            Thread.Sleep(5000);
-
-            driver.SwitchTo().Alert().Accept();
+            alertPage.AlertAccept();
         }
         [TearDown]
         public void TearDown()

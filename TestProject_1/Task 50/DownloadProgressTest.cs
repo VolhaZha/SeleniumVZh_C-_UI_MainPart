@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using PageObjectModelsProject_1.Task_50;
+using OpenQA.Selenium.Support.UI;
 
 namespace TestProject_1.Task_50
 {
@@ -22,32 +22,32 @@ namespace TestProject_1.Task_50
         [Test, Order(1)]
         public void WaitForUserTest()
         {
-                driver.Navigate().GoToUrl(DownloadProgressParams.URL);
+            DowloadProgressPage dowloadProgressPage = new DowloadProgressPage(driver);
+            dowloadProgressPage.WaitForUser();
 
-                IWebElement downloadButton = driver.FindElement(DownloadProgressParams.DOWNLOAD_BUTTON);
-                downloadButton.Click();
+            System.Threading.Thread.Sleep(5000);
 
-                System.Threading.Thread.Sleep(5000);
-
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(6));
-                var element = wait.Until(condition =>
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(6));
+            var element = wait.Until(condition =>
+            {
+                try
                 {
-                    try
-                    {
-                        var elementToBeDisplayed = driver.FindElement(DownloadProgressParams.LINK_TO_PERCENTAGE);
-                        return elementToBeDisplayed.Displayed;
-                    }
-                    catch (StaleElementReferenceException)
-                    {
-                        return false;
-                    }
-                    catch (NoSuchElementException)
-                    {
-                        return false;
-                    }
-                });
+                    var elementToBeDisplayed = driver.FindElement(DownloadProgressParams.LINK_TO_PERCENTAGE);
+                    return elementToBeDisplayed.Displayed;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    return false;
+                }
+                catch (NoSuchElementException)
+                {
+                    return false;
+                }
+            });
 
-                driver.Navigate().Refresh();
+            Assert.IsTrue(element);
+
+            driver.Navigate().Refresh();
         }
 
         [TearDown]

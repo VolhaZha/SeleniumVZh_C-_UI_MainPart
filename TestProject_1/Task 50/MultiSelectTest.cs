@@ -22,28 +22,16 @@ namespace TestProject_1.Task_50
         [Test]
         public void MultiSelect()
         {
-            driver.Navigate().GoToUrl(MultiSelectParams.URL);
+            MultiSelectPage multiSelectPage = new MultiSelectPage(driver);
+            multiSelectPage.MultiSelect();
 
             IWebElement list = driver.FindElement(MultiSelectParams.LIST);
             SelectElement select = new SelectElement(list);
 
-            select.SelectByIndex(0);
-            select.SelectByIndex(1);
-            select.SelectByValue("Washington");
-            select.SelectByText("Texas");
-
-            System.Threading.Thread.Sleep(3000);
-            select.DeselectByIndex(0);
-
-            System.Threading.Thread.Sleep(3000);
             IList<IWebElement> allSelected = select.AllSelectedOptions;
             List<string> actualOptionText = new List<string>();
             List<string> expectedOptionText = new List<string> { "Florida", "Texas", "Washington" };
-            foreach (IWebElement webElement in allSelected)
-            {
-                Console.WriteLine(webElement.Text);
-                actualOptionText.Add(webElement.Text);
-            }
+            actualOptionText = allSelected.Select(webElement => webElement.Text).ToList();
             Assert.AreEqual(expectedOptionText, actualOptionText, "Selected option doesn't match expected option");
         }
 

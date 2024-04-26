@@ -13,7 +13,7 @@ namespace TestProject_1.Task_50
         public void Setup()
         {
             driver = new ChromeDriver();
-            driver.Url = AlertParams.URL;
+            driver.Url = WaitUserParams.URL;
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(AlertParams.WAIT_TIME_1);
 
@@ -22,12 +22,8 @@ namespace TestProject_1.Task_50
         [Test, Order(1)]
         public void WaitForUserTest()
         {
-            driver.Navigate().GoToUrl(WaitUserParams.URL);
-
-            IWebElement getNewUserButton = driver.FindElement(WaitUserParams.LINK_TO_GET_NEW_USER);
-            getNewUserButton.Click();
-
-            System.Threading.Thread.Sleep(5000);
+            WaitUserPage waitUserPage = new WaitUserPage(driver);
+            waitUserPage.WaitForUser();
 
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(6));
             var element = wait.Until(condition =>
@@ -46,6 +42,7 @@ namespace TestProject_1.Task_50
                     return false;
                 }
             });
+            Assert.IsTrue(element);
         }
 
         [TearDown]

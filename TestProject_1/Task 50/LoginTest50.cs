@@ -45,7 +45,7 @@ namespace TestProject_1.Task_50
                 }
             });
 
-            Assert.IsTrue(loginPage.LogInSuccess());
+            Assert.IsTrue(element);
         }
 
         [TearDown]

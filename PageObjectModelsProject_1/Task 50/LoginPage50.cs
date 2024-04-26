@@ -8,7 +8,6 @@ namespace PageObjectModelsProject_1.Task_50
         IWebElement _nameField;
         IWebElement _passField;
         IWebElement _loginButton;
-        IWebElement _loggedLogo;
 
         public LoginPage50(IWebDriver driver) : base(driver)
         {
@@ -22,20 +21,6 @@ namespace PageObjectModelsProject_1.Task_50
             _nameField?.SendKeys(name);
             _passField?.SendKeys(password);
             _loginButton?.Click();
-        }
-
-        public bool LogInSuccess()
-        {
-            try
-            {
-                _loggedLogo = FindElementBy(LoginParams.LOGGED_LOGO);
-                var writeButton = FindElementBy(LoginParams.LOGGED_LOGO);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
         }
     }
 }

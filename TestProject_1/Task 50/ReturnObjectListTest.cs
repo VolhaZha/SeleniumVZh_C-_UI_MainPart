@@ -20,7 +20,7 @@ namespace TestProject_1.Task_50
         }
 
         [Test, Order(1)]
-        public void WaitForUser()
+        public void WaitForUserTest()
         {
             IWebElement listNumberOption = driver.FindElement(ReturnObjectListParams.LIST_OPTION10);
             listNumberOption.Click();
@@ -63,11 +63,11 @@ namespace TestProject_1.Task_50
 
             foreach (CustomObject customObject in customObjectsList)
             {
-                Console.WriteLine(customObject.getName + ", " + customObject.getPosition + ", " + customObject.getOffice);
+                Console.WriteLine(customObject.Name + ", " + customObject.Position + ", " + customObject.Office);
             }
 
             CustomObject firstPerson = customObjectsList[0];
-            string expectedText = firstPerson.getName() + ", " + firstPerson.getPosition() + ", " + firstPerson.getOffice();
+            string expectedText = firstPerson.Name + ", " + firstPerson.Position + ", " + firstPerson.Office;
             string actualText = "A. Cox, Junior Technical Author, San Francisco";
 
             Assert.AreEqual(expectedText, actualText);
