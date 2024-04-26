@@ -27,25 +27,9 @@ namespace TestProject_1.Task_50
 
             System.Threading.Thread.Sleep(5000);
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(6));
-            var element = wait.Until(condition =>
-            {
-                try
-                {
-                    var elementToBeDisplayed = driver.FindElement(DownloadProgressParams.LINK_TO_PERCENTAGE);
-                    return elementToBeDisplayed.Displayed;
-                }
-                catch (StaleElementReferenceException)
-                {
-                    return false;
-                }
-                catch (NoSuchElementException)
-                {
-                    return false;
-                }
-            });
+            
 
-            Assert.IsTrue(element);
+            Assert.IsTrue(dowloadProgressPage.CheckProgress());
 
             driver.Navigate().Refresh();
         }
