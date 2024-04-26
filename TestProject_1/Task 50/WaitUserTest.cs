@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using PageObjectModelsProject_1.Task_50;
-using OpenQA.Selenium.Support.UI;
 
 namespace TestProject_1.Task_50
 {
@@ -25,24 +24,7 @@ namespace TestProject_1.Task_50
             WaitUserPage waitUserPage = new WaitUserPage(driver);
             waitUserPage.WaitForUser();
 
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(6));
-            var element = wait.Until(condition =>
-            {
-                try
-                {
-                    var elementToBeDisplayed = driver.FindElement(WaitUserParams.EXPLICIT_WAIT_SELECTOR);
-                    return elementToBeDisplayed.Displayed;
-                }
-                catch (StaleElementReferenceException)
-                {
-                    return false;
-                }
-                catch (NoSuchElementException)
-                {
-                    return false;
-                }
-            });
-            Assert.IsTrue(element);
+            Assert.IsTrue(waitUserPage.CheckResult());
         }
 
         [TearDown]

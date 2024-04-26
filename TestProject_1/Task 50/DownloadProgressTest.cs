@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using PageObjectModelsProject_1.Task_50;
-using OpenQA.Selenium.Support.UI;
 
 namespace TestProject_1.Task_50
 {
@@ -16,7 +15,6 @@ namespace TestProject_1.Task_50
             driver.Url = AlertParams.URL;
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(AlertParams.WAIT_TIME_1);
-
         }
 
         [Test, Order(1)]
@@ -26,8 +24,6 @@ namespace TestProject_1.Task_50
             dowloadProgressPage.WaitForUser();
 
             System.Threading.Thread.Sleep(5000);
-
-            
 
             Assert.IsTrue(dowloadProgressPage.CheckProgress());
 

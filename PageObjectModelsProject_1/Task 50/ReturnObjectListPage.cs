@@ -13,13 +13,13 @@ namespace PageObjectModelsProject_1.Task_50
 
         public String ReturnObjectListText()
         {
-            IWebElement listNumberOption = _driver.FindElement(ReturnObjectListParams.LIST_OPTION10);
+            IWebElement listNumberOption = FindElementBy(ReturnObjectListParams.LIST_OPTION10);
             listNumberOption.Click();
 
             System.Threading.Thread.Sleep(1000);
 
             List<CustomObject> customObjectsList = new List<CustomObject>();
-            bool isButtonDisabled = _driver.FindElement(ReturnObjectListParams.NEXTBUTTON).GetAttribute("class").Contains("disabled");
+            bool isButtonDisabled = FindElementBy(ReturnObjectListParams.NEXTBUTTON).GetAttribute("class").Contains("disabled");
             while (!isButtonDisabled)
             {
                 IList<IWebElement> rows = _driver.FindElements(ReturnObjectListParams.ROWS);

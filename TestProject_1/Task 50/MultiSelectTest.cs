@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using PageObjectModelsProject_1.Task_50;
 
@@ -22,16 +21,10 @@ namespace TestProject_1.Task_50
         [Test]
         public void MultiSelect()
         {
-            MultiSelectPage multiSelectPage = new MultiSelectPage(driver);
-            multiSelectPage.MultiSelect();
-
-            IWebElement list = driver.FindElement(MultiSelectParams.LIST);
-            SelectElement select = new SelectElement(list);
-
-            IList<IWebElement> allSelected = select.AllSelectedOptions;
             List<string> actualOptionText = new List<string>();
             List<string> expectedOptionText = new List<string> { "Florida", "Texas", "Washington" };
-            actualOptionText = allSelected.Select(webElement => webElement.Text).ToList();
+            MultiSelectPage multiSelectPage = new MultiSelectPage(driver);
+            actualOptionText = multiSelectPage.MultiSelect();
             Assert.AreEqual(expectedOptionText, actualOptionText, "Selected option doesn't match expected option");
         }
 

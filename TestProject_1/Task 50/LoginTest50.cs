@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using PageObjectModelsProject_1.Task_50;
-using OpenQA.Selenium.Support.UI;
 
 namespace TestProject_1.Task_50
 {
@@ -27,25 +26,7 @@ namespace TestProject_1.Task_50
             LoginPage50 loginPage = new LoginPage50(driver);
             loginPage.EnterCreds(username, password);
 
-            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            var element = wait.Until(condition =>
-            {
-                try
-                {
-                    var elementToBeDisplayed = driver.FindElement(By.ClassName("app_logo"));
-                    return elementToBeDisplayed.Displayed;
-                }
-                catch (StaleElementReferenceException)
-                {
-                    return false;
-                }
-                catch (NoSuchElementException)
-                {
-                    return false;
-                }
-            });
-
-            Assert.IsTrue(element);
+            Assert.IsTrue(loginPage.CheckResult());
         }
 
         [TearDown]

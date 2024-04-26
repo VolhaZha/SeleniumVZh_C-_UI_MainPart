@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using PageObjectModelsProject_1.Task_50;
-using System.Text.RegularExpressions;
 
 namespace TestProject_1.Task_50
 {

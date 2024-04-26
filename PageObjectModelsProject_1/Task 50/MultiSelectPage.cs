@@ -10,7 +10,7 @@ namespace PageObjectModelsProject_1.Task_50
         {
         }
 
-        public void MultiSelect()
+        public List<string> MultiSelect()
         {
             IWebElement list = FindElementBy(MultiSelectParams.LIST);
             SelectElement select = new SelectElement(list);
@@ -24,6 +24,16 @@ namespace PageObjectModelsProject_1.Task_50
             select.DeselectByIndex(0);
 
             System.Threading.Thread.Sleep(3000);
+
+            IList<IWebElement> allSelected = select.AllSelectedOptions;
+
+            List<string> selectedOptionsText = new List<string>();
+            foreach (var option in allSelected)
+            {
+                selectedOptionsText.Add(option.Text);
+            }
+
+            return selectedOptionsText;
         }
 
     }
