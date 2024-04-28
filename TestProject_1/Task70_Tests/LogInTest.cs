@@ -27,6 +27,9 @@ namespace PageObjectModelsProject_1.Task70_Tests
 
             HomePage homePage = new HomePage(driver);
             Assert.IsTrue(homePage.CheckLoginResult());
+
+            HomePage homePage2 = new HomePage(driver);
+            homePage2.TakeScreen();
         }
 
         [TearDown]

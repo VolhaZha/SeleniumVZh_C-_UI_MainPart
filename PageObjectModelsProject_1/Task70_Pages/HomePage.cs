@@ -43,6 +43,12 @@ namespace PageObjectModelsProject_1.Task70_Pages
             _burgerMenu?.Click();
             _logOutButton?.Click();
         }
+
+        public void TakeScreen()
+        {
+            Screenshot screenshot = (_driver as ITakesScreenshot).GetScreenshot();
+            screenshot.SaveAsFile(@"C:\Users\OlgaZhavrid\Downloads\screenshot.png");
+        }
     }
 
 }
