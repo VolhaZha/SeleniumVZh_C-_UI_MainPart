@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using PageObjectModelsProject_1.Task70_Pages;
-using NUnit.Framework;
+using NUnit.Allure.Core;
 
 namespace PageObjectModelsProject_1.Task70_Tests
 {
+    [AllureNUnit]
     public class LogOutTest
     {
         private WebDriver driver;
